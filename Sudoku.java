@@ -4,9 +4,15 @@ public class Sudoku {
     static Random rand = new Random();
     public static void main(String[] args)
     {
-        generateBoard();
-        randomizeBoard();
-        printBoard();
+        int boardAmount = 0;
+        while (boardAmount < 10) {
+            generateBoard();
+            randomizeBoard();
+            printBoard();
+            System.out.print("\n\n");
+            boardAmount++;
+        }
+       
     }
     public static void generateBoard() {
         int[] row = {1,4,7,2,5,8,3,6,9};
