@@ -1,9 +1,7 @@
 import java.util.Random;
-import java.util.ArrayList;
 public class Sudoku {
     static int[][] board = new int[9][9];
     static Random rand = new Random();
-    static ArrayList<int[]> rowList = new ArrayList<>();
     public static void main(String[] args)
     {
         generateBoard();
@@ -17,13 +15,12 @@ public class Sudoku {
             for (int j = 0; j < 9; j++) {
                 board[i][j]= (start+j-1)%9 +1;
             }
-            rowList.add(board[i]);
         }
     }
     public static void randomizeBoard() {
         swapRandomDigits();
-        shuffleRowsInBands();
-        shuffleColsInStacks();
+        shuffleRows();
+        shuffleCols();
     }
     public static void swapRandomDigits() {
         int a = rand.nextInt(9) + 1;
@@ -37,7 +34,7 @@ public class Sudoku {
             }
         }
     }
-    public static void shuffleRowsInBands() {
+    public static void shuffleRows() {
         for (int band = 0; band < 3; band++) {
             int start = band * 3;
 
@@ -54,7 +51,7 @@ public class Sudoku {
         board[r1] = board[r2];
         board[r2] = temp;
     }
-    public static void shuffleColsInStacks() {
+    public static void shuffleCols() {
         for (int stack = 0; stack < 3; stack++) {
             int start = stack * 3;
 
