@@ -1,0 +1,30 @@
+1) Program Overview
+This program generates a randomized fully solved valid sudoku board when run.
+2) Data Structures
+I made use of a 2D array to store the index values for the full sudoku board, which is printed by the printBoard method. 
+I used an array to create the first row in the initial board before it is randomized, which is taken from the first row of 
+an already solved sudoku board I found and used as a sample. I didn’t use ArrayList as it wasn’t necessary for my solution.
+3) and 4) Algorithm Design/Methods
+First, the program generates an initial starting board that is randomized later by a different method. The generateBoard method 
+has the first row pre-written in an array, and the rest of the board is generated. The method then loops through the 2D board 
+array and shifts each element across the row (start + j - 1. % 9 + 1 makes the shifting wrap around when it reaches 9 so that 
+the numbers cycle through 1-9. This produces a valid solved sudoku board that serves as a template so that it can be randomized 
+by randomizeBoard. randomizeBoard consists of the shuffleRows, swapRows, ShuffleCols, swapCols, and swapRandomDigits. shuffleRows 
+swaps the bands, which are groups of three numbers in the same row, inside each row. The swapping part is done by swapRows which 
+is called by shuffleRows, whereas shuffleRows itself just iterates through the row and selects the random ints. shuffleCols and 
+swapCols work almost exactly the same, except they swap the stacks within each column instead. swapRandomDigits simply selects 
+two random ints between 1 and 9 until both are different from each other and then replaces every instance of int a with int b 
+and every instance of int b with int a. Finally, the printBoard method formats the 2D array and prints out the borders around 
+the numbers along with the numbers themselves. 
+5) Testing methods
+I tested the program by first printing out a hard coded 2D array using only the printBoard method. Then I added the generateBoard 
+method and used trial and error to figure out the formula to shift the initial row to generate a full valid board, and tested it 
+with the pintBoard method. Finally, I tested the code with only the method to swap the digits and only the methods to swap the bands 
+and stacks before testing it all together.
+6) Challenges and solutions 
+The most challenging part of this project for me was figuring out how to randomize the board so that it was different with each run. 
+I knew I wanted to generate a fully solved board to start with as a template and then change it based on rules that would work without
+fail. I did this because I wanted to avoid having to write a method to check if the board was valid constantly because I wasn’t sure
+how to do that. I looked at a lot of examples of sudoku boards to figure out that you could swap digits with each other and swap 
+bands and stacks within rows and columns respectively while still keeping the board valid. I also found other ways to further randomize
+the board, but stuck with a simpler solution. 
